@@ -15,6 +15,8 @@ class Products extends Component {
   constructor() {
     super();
     this.state = {
+      error: null,
+      isLoaded: false,
       storefront: "/api/v2/storefront",
       product: [],
       user_model: {
@@ -25,16 +27,24 @@ class Products extends Component {
     };
   }
   async componentDidMount() {
-    const { user_model, storefront } = this.state;
+    const { user_model, storefront, token } = this.state;
 
     await axios
       .post(`/spree_oauth/token`, user_model)
       .then(res => res.data.access_token)
-      .then(res => {
-        this.setState({ token: res });
-        localStorage.setItem("API_TOKEN", res);
-        console.log("👉 Returned data:", res);
-      });
+      .then(
+        res => {
+          this.setState({ isLoaded: true, token: res });
+          localStorage.setItem("API_TOKEN", res);
+          console.log("👉 Returned data:", res);
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
     await axios
       .get(`${storefront}/products`, {
         params: {
@@ -42,15 +52,23 @@ class Products extends Component {
           // token: `${token}`
         },
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("API_TOKEN")}`
+          // Authorization: `Bearer ${localStorage.getItem("API_TOKEN")}`
+          Authorization: `Bearer ${token}`
         }
       })
       .then(res => res.data.data)
-      .then(res => {
-        this.setState({ product: res });
-        console.log(res);
-      });
-    console.log(this.state.product);
+      .then(
+        res => {
+          this.setState({ isLoaded: true, product: res });
+          console.log(res);
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
   }
   //   async componentDidMount() {
   //     const response = await client.authentication.getToken({
@@ -88,14 +106,22 @@ class Products extends Component {
   //   }
 
   render() {
+    const { error, isLoaded, product } = this.state;
     return (
       <div>
-        {this.state.product.map((i, idx) => (
-          <div key={idx}>
-            <h1>{i.id}</h1>
-            <h1>{i.attributes.display_price}</h1>
-          </div>
-        ))}
+        {error ? (
+          <div>Error: {error.message}</div>
+        ) : !isLoaded ? (
+          <div>Loading...</div>
+        ) : (
+          <ul>
+            {product.map(item => (
+              <li key={item.id}>
+                {item.id} {item.attributes.display_price}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     );
   }
