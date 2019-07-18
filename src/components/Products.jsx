@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-// import { makeClient } from "@spree/storefront-api-v2-sdk";
-
-// const client = makeClient({
-//   host: "http://localhost:3000"
-// });
 import axios from "axios";
+
 axios.defaults.baseURL = "http://localhost:3000";
 // axios.defaults.headers.common["Authorization"] =
 //   "Bearer dtso5Z4BFG2ZjEKNj6RL5cTg0UND61B3MaPt6tEBEGg";
@@ -36,7 +32,7 @@ class Products extends Component {
         res => {
           this.setState({ isLoaded: true, token: res });
           localStorage.setItem("API_TOKEN", res);
-          console.log("👉 Returned data:", res);
+          // console.log("👉 Returned data:", res);
         },
         error => {
           this.setState({
@@ -48,7 +44,7 @@ class Products extends Component {
     await axios
       .get(`${storefront}/products`, {
         params: {
-          // access_token: "dtso5Z4BFG2ZjEKNj6RL5cTg0UND61B3MaPt6tEBEGg"
+          // access_token: "dtso5Z4BFG2ZjEKNj6RL5cTg0UND61B3MaPt6tEBEGg""👉 Returned data:""👉 Returned data:"
           // token: `${token}`
         },
         headers: {
@@ -60,7 +56,7 @@ class Products extends Component {
       .then(
         res => {
           this.setState({ isLoaded: true, product: res });
-          console.log(res);
+          console.log("👉 Returned data:", res);
         },
         error => {
           this.setState({
@@ -70,57 +66,29 @@ class Products extends Component {
         }
       );
   }
-  //   async componentDidMount() {
-  //     const response = await client.authentication.getToken({
-  //       username: "spree@example.com",
-  //       password: "spree123"
-  //     });
-
-  //     const bearerToken = response.success().access_token;
-  //     console.log("token:", bearerToken);
-
-  //     const acc_info = await client.account.accountInfo({ bearerToken });
-  //     const acc = acc_info.success().data.attributes.email;
-  //     console.log("acc info", acc);
-
-  //     const card_list = await client.account.creditCardsList({ bearerToken });
-  //     const card = card_list.success();
-  //     console.log("card", card);
-
-  //     const cart_add = await client.cart.addItem(
-  //       { bearerToken },
-  //       {
-  //         variant_id: "1",
-  //         quantity: 1
-  //       }
-  //     );
-  //     const carts = cart_add.success();
-  //     console.log("carts", carts);
-  //     const product_list = await client.products.list();
-  //     const product = product_list.success().data;
-  //     console.log("product", product);
-
-  //     const cart_list = await client.cart.show({ bearerToken });
-  //     const cart = card_list.success();
-  //     console.log("cart", cart);
-  //   }
 
   render() {
     const { error, isLoaded, product } = this.state;
     return (
-      <div>
+      <div className="card-list">
         {error ? (
           <div>Error: {error.message}</div>
         ) : !isLoaded ? (
           <div>Loading...</div>
         ) : (
-          <ul>
-            {product.map(item => (
-              <li key={item.id}>
-                {item.id} {item.attributes.display_price}
-              </li>
+          <div className="card">
+            {product.map(i => (
+              <div className="card-item" key={i.id}>
+                <div className="img" />
+                <div className="content">
+                  <h1>{i.attributes.name}</h1>
+                  <h5>{i.type}</h5>
+                  <p>{i.attributes.description}</p>
+                  <h3>{i.attributes.display_price}</h3>
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     );

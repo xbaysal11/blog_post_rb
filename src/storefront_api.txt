@@ -1,0 +1,40 @@
+// import { makeClient } from "@spree/storefront-api-v2-sdk";
+
+// const client = makeClient({
+//   host: "http://localhost:3000"
+// });
+
+//   async componentDidMount() {
+  //     const response = await client.authentication.getToken({
+  //       username: "spree@example.com",
+  //       password: "spree123"
+  //     });
+
+  //     const bearerToken = response.success().access_token;
+  //     console.log("token:", bearerToken);
+
+  //     const acc_info = await client.account.accountInfo({ bearerToken });
+  //     const acc = acc_info.success().data.attributes.email;
+  //     console.log("acc info", acc);
+
+  //     const card_list = await client.account.creditCardsList({ bearerToken });
+  //     const card = card_list.success();
+  //     console.log("card", card);
+
+  //     const cart_add = await client.cart.addItem(
+  //       { bearerToken },
+  //       {
+  //         variant_id: "1",
+  //         quantity: 1
+  //       }
+  //     );
+  //     const carts = cart_add.success();
+  //     console.log("carts", carts);
+  //     const product_list = await client.products.list();
+  //     const product = product_list.success().data;
+  //     console.log("product", product);
+
+  //     const cart_list = await client.cart.show({ bearerToken });
+  //     const cart = card_list.success();
+  //     console.log("cart", cart);
+  //   }
