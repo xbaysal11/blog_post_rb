@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-axios.defaults.baseURL = "magaz.spalmalo.com/api";
+axios.defaults.baseURL = "http://10.0.0.35/api";
 // axios.defaults.headers.common["Authorization"] =
 //   "Bearer dtso5Z4BFG2ZjEKNj6RL5cTg0UND61B3MaPt6tEBEGg";
 // axios.defaults.headers.post["Content-Type"] =
