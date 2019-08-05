@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./Products.scss";
 
-axios.defaults.baseURL = "http://10.0.0.35/api";
+axios.defaults.baseURL = "http://localhost:3000";
 // axios.defaults.headers.common["Authorization"] =
 //   "Bearer dtso5Z4BFG2ZjEKNj6RL5cTg0UND61B3MaPt6tEBEGg";
 // axios.defaults.headers.post["Content-Type"] =

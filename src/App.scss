@@ -1,32 +1,4 @@
 body {
   background: rgb(246, 246, 246);
-  margin: 2em;
   color: rgb(42, 42, 42);
-  .card-list {
-    padding: 0 5em;
-    .card {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 2em;
-      //   justify-items: center;
-      //   align-items: center;
-      .card-item {
-        background: #fff;
-        border-radius: 5px;
-        box-shadow: 30px 30px 30px rgb(209, 209, 209);
-        .img {
-          position: inherit;
-          background: rgb(79, 0, 188);
-          background: linear-gradient(45deg, rgba(79, 0, 188, 1) 0%, rgba(41, 171, 226, 1) 100%);
-          height: 200px;
-          //   border-radius: 5px;
-        }
-        .content {
-          padding: 1em;
-
-          text-align: center;
-        }
-      }
-    }
-  }
 }

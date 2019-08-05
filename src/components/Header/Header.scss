@@ -1,0 +1,27 @@
+// colors
+$white: #fff;
+
+.header {
+  padding: 2em 0;
+  margin-bottom: 3em;
+  background: rgb(79, 0, 188);
+  background: linear-gradient(45deg, rgba(79, 0, 188, 1) 0%, rgba(41, 171, 226, 1) 100%);
+  color: $white;
+  width: 100%;
+  nav {
+    ul {
+      list-style: none;
+      display: flex;
+      overflow: hidden;
+      justify-content: flex-end;
+      margin: 0 3em;
+      li {
+        margin: 0 1em;
+        a {
+          color: $white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

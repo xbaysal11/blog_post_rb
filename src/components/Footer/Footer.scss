@@ -1,0 +1,10 @@
+// colors
+$white: #fff;
+
+.footer {
+  margin-top: 5em;
+  padding: 10em;
+  background: rgb(79, 0, 188);
+  background: linear-gradient(45deg, rgba(79, 0, 188, 1) 0%, rgba(41, 171, 226, 1) 100%);
+  color: $white;
+}
