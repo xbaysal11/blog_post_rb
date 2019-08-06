@@ -43,7 +43,7 @@ class Products extends Component {
         }
       );
     await axios
-      .get(`${storefront}/products`, {
+      .get(`${storefront}/products?per_page=100`, {
         params: {
           // access_token: "dtso5Z4BFG2ZjEKNj6RL5cTg0UND61B3MaPt6tEBEGg""👉 Returned data:""👉 Returned data:"
           // token: `${token}`
@@ -83,7 +83,10 @@ class Products extends Component {
                 <div className="img" />
                 <div className="content">
                   <h1>{i.attributes.name}</h1>
-                  <h5>{i.type}</h5>
+                  <h5>
+                    {i.type}
+                    {i.id}
+                  </h5>
                   <p>{i.attributes.description}</p>
                   <h3>{i.attributes.display_price}</h3>
                 </div>
